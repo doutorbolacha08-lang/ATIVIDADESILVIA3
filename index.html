@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercício 3 - Landing Page Form</title>
+
+  <!-- Google Fonts: Montserrat para títulos e Open Sans para corpo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* Paleta de cores atualizada (Azul e Ciano) */
+    :root {
+      --cor-1-primaria: #0284c7;    /* Azul vibrante */
+      --cor-2-secundaria: #0369a1;  /* Azul escuro (hover) */
+      --cor-3-escura: #0f172a;      /* Texto e elementos escuros */
+      --cor-4-fundo: #f0f9ff;       /* Fundo claro levemente azulado */
+      --cor-5-bordas: #bae6fd;      /* Bordas suaves dos campos */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: var(--cor-4-fundo);
+      color: #334155;
+      line-height: 1.5;
+    }
+
+    /* 1. Navbar Superior */
+    .navbar {
+      background-color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 40px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    }
+
+    .logo {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--cor-1-primaria);
+    }
+
+    /* Links do menu alinhados à direita */
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #64748b;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--cor-1-primaria);
+    }
+
+    /* 2. Faixa Superior (Gradiente Azul/Ciano) */
+    .hero-banner {
+      height: 120px;
+      background: linear-gradient(90deg, #0284c7, #06b6d4);
+    }
+
+    /* 3. Container do Formulário (Centralizado) */
+    .form-wrapper {
+      max-width: 580px;
+      margin: -60px auto 60px auto;
+      padding: 0 20px;
+    }
+
+    .form-card {
+      background-color: #ffffff;
+      padding: 40px 35px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+    }
+
+    /* Títulos do Formulário (Center) */
+    .form-header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .form-header h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.7rem;
+      color: var(--cor-1-primaria);
+      margin-bottom: 8px;
+    }
+
+    .form-header p {
+      font-size: 0.88rem;
+      color: #64748b;
+    }
+
+    /* Camada dos Inputs (Left) */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .full-width {
+      grid-column: span 2;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      text-align: left;
+    }
+
+    .input-group label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .input-group input,
+    .input-group select,
+    .input-group textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid var(--cor-5-bordas);
+      border-radius: 8px;
+      font-size: 0.88rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      color: #1e293b;
+      background-color: #fafafa;
+    }
+
+    .input-group input:focus,
+    .input-group select:focus,
+    .input-group textarea:focus {
+      border-color: var(--cor-1-primaria);
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+      background-color: #ffffff;
+    }
+
+    .input-group textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    /* Checkbox estilo caixa */
+    .checkbox-box {
+      background-color: #f8fafc;
+      border: 1px solid var(--cor-5-bordas);
+      padding: 12px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+
+    .checkbox-box input[type="checkbox"] {
+      width: auto;
+      cursor: pointer;
+    }
+
+    /* Botão com Hover Effect */
+    .btn-submit {
+      width: 100%;
+      padding: 14px;
+      background-color: var(--cor-1-primaria);
+      color: #ffffff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: background-color 0.2s, transform 0.1s;
+      margin-top: 10px;
+    }
+
+    .btn-submit:hover {
+      background-color: var(--cor-2-secundaria);
+      transform: translateY(-1px);
+    }
+
+    /* 4. Footer com créditos do desenvolvedor (Right) */
+    footer {
+      text-align: right;
+      padding: 20px 40px;
+      font-size: 0.82rem;
+      color: #64748b;
+      background-color: #ffffff;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    footer strong {
+      color: var(--cor-1-primaria);
+    }
+
+    /* Responsividade para telemóveis */
+    @media (max-width: 520px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+      .full-width {
+        grid-column: span 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">VelhoTech</div>
+    <ul class="nav-links">
+      <li><a href="#">Contato</a></li>
+      <li><a href="#">Sobre</a></li>
+      <li><a href="#">Serviços</a></li>
+    </ul>
+  </nav>
+
+  <!-- Banner Azul/Ciano -->
+  <div class="hero-banner"></div>
+
+  <!-- Form Card Centralizado -->
+  <main class="form-wrapper">
+    <div class="form-card">
+      <div class="form-header">
+        <h1>Solicite uma Proposta Gratuita</h1>
+        <p>Preencha o formulário abaixo e a nossa equipa entrará em contacto em breve</p>
+      </div>
+
+      <form action="#" method="POST" class="form-grid">
+        <div class="input-group">
+          <label for="nome">Nome Completo</label>
+          <input type="text" id="nome" placeholder="Seu nome" required>
+        </div>
+
+        <div class="input-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="seu@email.com" required>
+        </div>
+
+        <div class="input-group">
+          <label for="empresa">Empresa</label>
+          <input type="text" id="empresa" placeholder="Nome da empresa">
+        </div>
+
+        <div class="input-group">
+          <label for="telefone">Telefone</label>
+          <input type="tel" id="telefone" placeholder="(11) 99999-9999">
+        </div>
+
+        <div class="input-group full-width">
+          <label for="servico">Qual serviço você precisa?</label>
+          <select id="servico">
+            <option value="" disabled selected>Selecione um serviço</option>
+            <option value="web">Desenvolvimento Web</option>
+            <option value="design">UI/UX Design</option>
+            <option value="consultoria">Consultoria Técnica</option>
+          </select>
+        </div>
+
+        <div class="input-group full-width">
+          <label for="orcamento">Orçamento Estimado</label>
+          <input type="text" id="orcamento" placeholder="R$ - Valor aproximado">
+        </div>
+
+        <div class="input-group full-width">
+          <label for="projeto">Conte-nos sobre seu projeto</label>
+          <textarea id="projeto" placeholder="Descreva brevemente o seu projeto e objetivos..."></textarea>
+        </div>
+
+        <div class="full-width checkbox-box">
+          <input type="checkbox" id="marketing">
+          <label for="marketing">Concordo em receber comunicações de marketing da VelhoTech</label>
+        </div>
+
+        <div class="full-width">
+          <button type="submit" class="btn-submit">Enviar Proposta</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <!-- Rodapé com Créditos -->
+  <footer>
+    <p>© 2026 VelhoTech. Todos os direitos reservados.</p>
+    <p>Desenvolvido por: <strong>João Felipe (BOMVELHO)</strong></p>
+  </footer>
+
+</body>
+</html>
